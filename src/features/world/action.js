@@ -1,7 +1,5 @@
-import {ADD_TILES} from './actionTypes';
-import { tiles } from '../../data/maps/1';
+import { GENERATE_MAP } from './actionTypes';
 
-export const addTiles = () => ({
-  type: ADD_TILES,
-  payload: {tiles: tiles}
+export const generateMap = () => ({
+  type: GENERATE_MAP
 })
