@@ -1,1 +1,1 @@
-export const ADD_TILES = 'TILES/Add';
+export const GENERATE_MAP = 'Generator/Map';

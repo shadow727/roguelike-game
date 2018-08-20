@@ -2,10 +2,10 @@ import React from 'react';
 import Map from '../map';
 import Player from '../player';
 import store from '../../store/store';
-import { addTiles } from './action';
+import { generateMap } from './action';
 
 function World(props){
-  store.dispatch(addTiles());
+  store.dispatch(generateMap());
   return(
     <div 
       style = {{
@@ -21,4 +21,4 @@ function World(props){
   )
 }
 
-export default World
+export default World;
