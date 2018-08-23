@@ -12,6 +12,8 @@ function getTileSprite(type) {
       return 'rock';
     case 6 : 
       return 'tree';
+    case -1 :
+      return 'chest';
     default :
       return 'ground';
   }

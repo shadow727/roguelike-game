@@ -4,7 +4,7 @@ import Player from '../player';
 import store from '../../store/store';
 import { generateMap } from './action';
 
-function World(props){
+function World(){
   store.dispatch(generateMap());
   return(
     <div 
