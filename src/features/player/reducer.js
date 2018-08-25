@@ -1,4 +1,4 @@
-import { MOVE_PLAYER } from './actionTypes';
+import { MOVE_PLAYER, PLAYER_RESET } from './actionTypes';
 
 const initialState = {
   position: [0, 0],
@@ -12,6 +12,10 @@ const playerReducer = (state=initialState, action) => {
     case MOVE_PLAYER:
       return {
         ...action.payload
+      }
+    case PLAYER_RESET:
+      return {
+        ...initialState
       }
     default:
       return state

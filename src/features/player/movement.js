@@ -1,6 +1,7 @@
 import store from '../../store/store';
 import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH } from '../../store/constants';
-import { movePlayer } from './action';
+import { movePlayer, playerReset } from './action';
+import { gameReset } from '../world/action';
 
 export default function handleMovement(player) {
 
@@ -51,10 +52,23 @@ export default function handleMovement(player) {
     return nextTile < 5;
   }
 
+  function observeSuccess(newPos) {
+    const tiles = store.getState().world.tiles;
+    const y = newPos[1] / SPRITE_SIZE;
+    const x = newPos[0] / SPRITE_SIZE;
+    return tiles[y][x] === -1;
+  }
+
   function dispatchMove(direction, newPos) {
     const walkIndex = getWalkIndex();
     const spriteLocation = getSpriteLocation(direction, walkIndex);
     store.dispatch(movePlayer(newPos, direction, spriteLocation, walkIndex));
+    if (observeSuccess(newPos)) {         //problem 1
+      setTimeout(() => {
+        store.dispatch(gameReset());
+        store.dispatch(playerReset());
+      },500);
+    }
   }
 
   function attemptMove(direction) {
@@ -68,13 +82,13 @@ export default function handleMovement(player) {
   function handleKeyDown(e) {
     e.preventDefault();
     switch(e.keyCode) {
-      case 37:               //left
+      case 37:               
         return attemptMove('LEFT');
-      case 38:              //up
+      case 38:             
         return attemptMove('UP');
-      case 39:              //right
+      case 39:              
         return attemptMove('RIGHT');
-      case 40:              //down
+      case 40:              
         return attemptMove('DOWN');
       default:
         console.log(e.keyCode)
