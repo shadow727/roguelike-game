@@ -1,1 +1,2 @@
-export const MOVE_PLAYER = 'Player/Move';
+export const MOVE_PLAYER = 'Move/Player';
+export const PLAYER_RESET = 'Reset/Player';

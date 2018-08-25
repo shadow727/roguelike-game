@@ -1,4 +1,4 @@
-import { MOVE_PLAYER } from './actionTypes';
+import { MOVE_PLAYER, PLAYER_RESET } from './actionTypes';
 
 export const movePlayer = (position, direction, spriteLocation, walkIndex) => ({
   type: MOVE_PLAYER,
@@ -8,4 +8,8 @@ export const movePlayer = (position, direction, spriteLocation, walkIndex) => ({
     spriteLocation: spriteLocation,
     walkIndex: walkIndex
   }
+})
+
+export const playerReset = () => ({
+  type: PLAYER_RESET
 })
