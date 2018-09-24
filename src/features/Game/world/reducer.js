@@ -1,4 +1,4 @@
-import { GENERATE_MAP, GAME_RESET } from './actionTypes';
+import { GENERATE_MAP, MAP_NEXT } from './actionTypes';
 
 function mapGenerator() {
   let tiles = [];
@@ -50,18 +50,19 @@ function generateMap() {
 }
 
 const initialState = {
-  tiles: []
+  tiles: [],
+  rounds: 1
 }
 
-const mapReducer = (state = initialState, action) => {
+const worldReducer = (state = initialState, action) => {
   switch(action.type) {
     case GENERATE_MAP:
-      return { ...state, tiles: generateMap() };
-    case GAME_RESET:
-      return { ...state, tiles: generateMap() };
+      return { ...state, tiles: generateMap(), rounds: 1};
+    case MAP_NEXT:
+      return { ...state, tiles: generateMap(), rounds: state.rounds+1};
     default:
       return state;
   }
 }
 
-export default mapReducer;
+export default worldReducer;
