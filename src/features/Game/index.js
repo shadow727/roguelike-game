@@ -5,7 +5,6 @@ import GameOver from './Gameover';
 import World from './world';
 
 function Game(props){
-  /*
   let screenShow = (<div></div>);
   if (props.gamePre) {
     screenShow = <StartScene />
@@ -14,8 +13,7 @@ function Game(props){
   }else if (props.gameOver) {
     screenShow = <GameOver />
   }
-  */
-  let screenShow = <World />
+  // let screenShow = <World />
   return (
   <div>
     {screenShow}

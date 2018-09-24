@@ -25,6 +25,7 @@ const playerReducer = (state=initialState, action) => {
         ...state,
         position: [0, 0],
         direction: 'DOWN',
+        spriteLocation: '0px 0px',
         walkIndex: 0
       }
     case PLAYER_RESET:
