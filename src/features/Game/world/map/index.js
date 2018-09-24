@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SPRITE_SIZE } from '../../store/constants';
+import { SPRITE_SIZE } from '../../../../store/constants';
 
 import './styles.css';
 
@@ -28,25 +28,20 @@ function MapTile(props) {
 }
 
 function MapRow(props) {
+  let id = 0;
   return <div className = "row" style={{height: SPRITE_SIZE}}>
   {
-    props.tiles.map( tile => <MapTile tile={tile} />)
+    props.tiles.map( tile => <MapTile tile={tile} key = {'rows' + id++}/>)
   }
   </div>
 }
 
 function Map(props) {
+  let id = 0;
   return(
-    <div
-      style = {{
-        width: '800px',
-        height: '400px',
-        border: '4px solid white',
-        margin: '10px auto'
-      }} 
-    >
+    <div className = 'map'>
       {
-        props.tiles.map( row =><MapRow tiles={row} />)
+        props.tiles.map( row =><MapRow tiles={row} key = {'tiles' + id++} />)
       }
     </div>
   )

@@ -1,7 +1,7 @@
-import store from '../../store/store';
-import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH } from '../../store/constants';
-import { movePlayer, playerReset } from './action';
-import { gameReset } from '../world/action';
+import store from '../../../../store/store';
+import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH } from '../../../../store/constants';
+import { movePlayer, playerNext } from './action';
+import { mapNext } from '../action';
 
 export default function handleMovement(player) {
 
@@ -65,14 +65,15 @@ export default function handleMovement(player) {
     store.dispatch(movePlayer(newPos, direction, spriteLocation, walkIndex));
     if (observeSuccess(newPos)) {         //problem 1
       setTimeout(() => {
-        store.dispatch(gameReset());
-        store.dispatch(playerReset());
+        store.dispatch(mapNext());
+        store.dispatch(playerNext());
       },500);
     }
   }
 
   function attemptMove(direction) {
     const oldPos = store.getState().player.position;
+    if (observeSuccess(oldPos)) return;
     const newPos = getNewPosition(oldPos, direction);
     if (observeBoundaries(newPos) && observeImpassable(newPos)) {
       dispatchMove(direction, newPos)

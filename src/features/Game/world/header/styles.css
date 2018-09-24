@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  width: 1008px;
+  height: 100px;
+  color: white;
+  margin: 0 auto;
+}
+
+.header-title {
+  padding-top: 5px;
+  font-style: italic;
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5em;
+}
+
+.header-round {
+  font-style: italic;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
+}
