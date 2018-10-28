@@ -19,6 +19,24 @@ function mapGenerator() {
     b = Math.round(Math.random()*20-0.5);
   }
   tiles[a][b] = -1;
+  tiles = addEnemy(tiles);
+  return tiles;
+}
+
+function addEnemy(tiles) {
+  for (let row in tiles){
+    for (let column in row) {
+      if (tiles[row][column] === 3) {
+        if (Math.random()*7 < 1) {
+          tiles[row][column] = -2;
+          return tiles;
+        }
+      }
+    }
+  }
+  let a = Math.round(Math.random()*10-0.5);
+  let b = Math.round(Math.random()*20-0.5);
+  tiles[a][b] = -2;
   return tiles;
 }
 

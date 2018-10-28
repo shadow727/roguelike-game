@@ -6,30 +6,30 @@ import { mapNext } from '../action';
 export default function handleMovement(player) {
 
   function getNewPosition(oldPos, direction) {
-    switch(direction) {
-      case 'LEFT': 
-        return [oldPos[0]-SPRITE_SIZE, oldPos[1]];
-      case 'RIGHT': 
-        return [oldPos[0]+SPRITE_SIZE, oldPos[1]];
-      case 'UP': 
-        return [oldPos[0], oldPos[1]-SPRITE_SIZE];
-      case 'DOWN': 
-        return [oldPos[0], oldPos[1]+SPRITE_SIZE];
-      default: 
-        return('Problem happened in player position');
+    switch (direction) {
+      case 'LEFT':
+        return [oldPos[0] - SPRITE_SIZE, oldPos[1]];
+      case 'RIGHT':
+        return [oldPos[0] + SPRITE_SIZE, oldPos[1]];
+      case 'UP':
+        return [oldPos[0], oldPos[1] - SPRITE_SIZE];
+      case 'DOWN':
+        return [oldPos[0], oldPos[1] + SPRITE_SIZE];
+      default:
+        return ('Problem happened in player position');
     }
   }
 
   function getSpriteLocation(direction, walkIndex) {
-    switch(direction) {
+    switch (direction) {
       case 'UP':
-        return `${SPRITE_SIZE*walkIndex}px ${SPRITE_SIZE*3}px`;
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 3}px`;
       case 'DOWN':
-        return `${SPRITE_SIZE*walkIndex}px ${SPRITE_SIZE*0}px`;
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`;
       case 'LEFT':
-        return `${SPRITE_SIZE*walkIndex}px ${SPRITE_SIZE*2}px`;
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`;
       case 'RIGHT':
-        return `${SPRITE_SIZE*walkIndex}px ${SPRITE_SIZE*1}px`;
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 1}px`;
       default:
         return '0px 0px';
     }
@@ -41,7 +41,7 @@ export default function handleMovement(player) {
   }
 
   function observeBoundaries(newPos) {
-    return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH) && (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT); 
+    return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH) && (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT);
   }
 
   function observeImpassable(newPos) {
@@ -63,11 +63,11 @@ export default function handleMovement(player) {
     const walkIndex = getWalkIndex();
     const spriteLocation = getSpriteLocation(direction, walkIndex);
     store.dispatch(movePlayer(newPos, direction, spriteLocation, walkIndex));
-    if (observeSuccess(newPos)) {         //problem 1
+    if (observeSuccess(newPos)) {
       setTimeout(() => {
         store.dispatch(mapNext());
         store.dispatch(playerNext());
-      },500);
+      }, 500);
     }
   }
 
@@ -82,14 +82,14 @@ export default function handleMovement(player) {
 
   function handleKeyDown(e) {
     e.preventDefault();
-    switch(e.keyCode) {
-      case 37:               
+    switch (e.keyCode) {
+      case 37:
         return attemptMove('LEFT');
-      case 38:             
+      case 38:
         return attemptMove('UP');
-      case 39:              
+      case 39:
         return attemptMove('RIGHT');
-      case 40:              
+      case 40:
         return attemptMove('DOWN');
       default:
         console.log(e.keyCode)
